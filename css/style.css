@@ -32,6 +32,10 @@ body{
 /* End of the reusable parts */
 
 /* Styling the main content */
+textarea:focus, input:focus{
+    outline: none;
+}
+
 h1, h2{
     text-transform: uppercase;
     font-weight: 400;
@@ -206,6 +210,20 @@ input:focus, textarea:focus{
     text-align: center;
 }
 /* Ending the styling of the students list */
+
+/* Styling the content handled by the js */
+.green-border{
+    border: 0.125rem solid green;
+}
+
+.red-border{
+    border: 0.125rem solid #CE0033;
+}
+
+.hide-btn{
+    opacity: 0.2;
+}
+/* End of the content handled by the js */
 
 @media screen and (max-width: 84.375rem) {
     .formulaire{
