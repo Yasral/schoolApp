@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This app aim at helping students make a little resume for themselves">
+    <meta name="keywords" content="Resume, Students, Todo-List">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
+    <title>SchoolApp</title>
+    <script src="./dist/bundle.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="wrapper">
+            <div class="main-content-container">
+                <h1>School app</h1>
+                <h2>La plateforme des developpeurs/euses</h2>
+                <article class="divider">
+                    <section class="formulaire">
+                        <h3>Creation d'un profil</h3>
+                        <form id="identification">
+                            <div>
+                                <!-- <label for="nom">Nom</label> -->
+                                <input type="text" name="nom" id="nom" placeholder="Nom">
+                            </div>
+                            <div>
+                                <!-- <label for="prenom">Prenom</label> -->
+                                <input type="text" name="prenom" id="prenom" placeholder="Prenom">
+                            </div>
+                            <div>
+                                <label for="form-level">Niveau</label>
+                                <select name="form-level" id="form-level">
+                                    <option value="Debutant">Developpeur Debutant</option>
+                                    <option value="Intermediaire">Developpeur Intermediaire</option>
+                                    <option value="Avance">Developpeur Avance</option>
+                                </select>
+                            </div>
+                            <div class="form-description">
+                                <!-- <label for="bio">Biographie</label> -->
+                                <textarea name="bio" id="bio" cols="40" rows="7"
+                                    placeholder="Vous pouvez ecrire votre biographie"></textarea>
+                                <p class="char-handler">
+                                    <span class="char-number"></span> / 130
+                                </p>
+                            </div>
+                            <ul class="skills">
+                                <li><label for="mockup">Maquettage</label><input type="number" name="mockup" id="mockup"></li>
+                                <li><label for="database">Creer une base de donnees</label><input type="number" name="database"
+                                        id="database" min="0" max="100"></li>
+                                <li><label for="ui">Developper un UI dynamique</label><input type="number" name="ui" id="ui" min="0"
+                                        max="100"></li>
+                                <li><label for="composant">Developper des composants d'acces aux donnees</label><input type="number"
+                                        name="composant" id="composant" min="0" max="100"></li>
+                                <li><label for="cms">Utilisation d'un CMS</label><input type="number" name="cms" id="cms" min="0" max="100">
+                                </li>
+                                <li><label for="ui-statique">Realiser un UI statique</label><input type="number" name="ui-statique"
+                                        id="ui-statique" min="0" max="100"></li>
+                                <li><label for="gestion-contenus">Elaborer des composants de gestion de contenus</label><input type="number"
+                                        name="gestion-contenus" id="gestion-contenus" min="0" max="100"></li>
+                                <li><label for="back-end">Developper la partie back end d'une application</label><input type="number"
+                                        name="back-end" id="back-end" min="0" max="100"></li>
+                            </ul>
+                            <button>Ajouter</button>
+                        </form>
+                    </section>
+                    <section class="student-information">
+                        <h3>Apprenants</h3>
+                        <div class="card-group">
+                            <div class="card">
+                                <div class="card-header"></div>
+                                <div class="card-body">
+                                    <div class="body-content">
+                                        <div class="body-img">
+                                            <img src="" alt="Picture" class="avatar">
+                                        </div>
+                                        <div class="content">
+                                            <h3 class="fullName">Nom et Prenom</h3>
+                                            <i class="far fa-edit"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </div>
+                                    <p class="biographie-description">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Sint fugiat accusantium eos doloribus dolorum! Accusamus non voluptatem cum harum facilis.
+                                        Quae aut sit aliquam tempora incidunt mollitia vitae consectetur hic.
+                                    </p>
+                            
+                                    <div class="card-footer">
+                                        <p class="card-level">
+                                            Niveau
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header"></div>
+                                <div class="card-body">
+                                    <div class="body-content">
+                                        <div class="body-img">
+                                            <img src="" alt="Picture" class="avatar">
+                                        </div>
+                                        <div class="content">
+                                            <h3 class="fullName">Nom et Prenom</h3>
+                                            <i class="far fa-edit"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </div>
+                                    <p class="biographie-description">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Sint fugiat accusantium eos doloribus dolorum! Accusamus non voluptatem cum harum facilis.
+                                        Quae aut sit aliquam tempora incidunt mollitia vitae consectetur hic.
+                                    </p>
+                            
+                                    <div class="card-footer">
+                                        <p class="card-level">
+                                            Niveau
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="btn-save">
+                            <button>
+                                Sauvegarder
+                            </button>
+                       </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+    <!-- <script src="./css/bootstrap/js/bootstrap.min.js"></script> -->
+</body>
+</html>

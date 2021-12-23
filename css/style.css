@@ -1,0 +1,282 @@
+/* CSS reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul{
+    list-style-type: none;
+}
+
+body{
+    background-color: #E3E2DF;
+    font-family: Alegreya, "sans-serif"
+}
+
+/* CSS reset end */
+
+/* Importing the fonts */
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+SC:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&display=swap');
+
+/* Styling the reusable parts */
+.wrapper{
+    width: 100%;
+    max-width: 100rem;
+    margin: 0 auto;
+}
+
+.main-content-container{
+    padding: 1.875rem;
+}
+/* End of the reusable parts */
+
+/* Styling the main content */
+h1, h2{
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 1.25rem 0 1.875rem 0;
+    text-align: center;
+}
+
+section h3:first-child{
+    font-weight: 400;
+}
+
+section h3:first-child, form div{
+    padding: 0 0 1.25rem 0;
+}
+
+form#identification, .form-description, .card-group{
+    display: flex;
+    flex-direction: column;
+}
+
+form#identification{
+    padding: 1.25rem;
+    box-shadow: 0 0.4375rem 1.5625rem rgba(0, 0, 0, 0.25);
+    border-radius: 0.375rem;
+}
+
+form label{
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 0 1.25rem 0 0;
+}
+
+form input, form select, textarea{
+    border: none;
+    border-radius: 0.375rem;
+    padding: 1rem;
+
+}
+
+form input{
+    /* width: 30rem; */
+    width: 100%;
+}
+
+input[name="nom"], input[name="prenom"]{
+    padding-bottom: 1.25rem;
+}
+
+form select{
+    background-color: #fff;
+}
+
+.form-description label{
+    padding-bottom: 1.25rem;
+}
+
+.form-description p{
+    padding: 1.25rem 0 1.875rem 0;
+}
+
+input:focus, textarea:focus{
+    border: 0.0625rem solid #5D0010;
+}
+
+.skills input{
+    width: 5.375rem;
+}
+
+.skills li{
+    padding: 1.25rem 0;
+}
+
+.skills + button, .student-information button, .student-information-list button{
+    border: none;
+    padding: 1.25rem;
+    border-radius: 0.375rem;
+    background-color: #a91750;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+}
+
+.skills + button{
+    width: 7.25rem;
+}
+
+.student-information button{
+     width: 8.25rem;
+}
+
+/* Handling the section of student */
+
+.card{
+    border-radius: 0.375rem;
+    box-shadow: 0 0.4375rem 1.5625rem rgba(0, 0, 0, 0.25);
+    padding: 0.9375rem 0.625rem;
+}
+
+.body-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.divider, .content, .btn-save{
+    display: flex;
+}
+
+.divider{
+    justify-content: space-around;
+}
+
+.formulaire{
+    max-width: 50rem;
+}
+
+/* .card-group{
+    justify-content: space-around;
+} */
+
+.card{
+    max-width: 41.875rem;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.card-group{
+    padding: 0.375rem;
+}
+
+.content{
+    width: 13.5rem;
+    max-width: 12.5 rem ;
+    justify-content: space-between;
+}
+
+.far{
+    cursor: pointer;
+    padding: 0.3125rem;
+}
+
+.body-content + p{
+    line-height: 2rem;
+    padding: 1.25rem 0;
+}
+
+.card-footer{
+    display: flex;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn-save, .card-footer{
+    justify-content: flex-end;
+}
+
+.btn-save{
+    padding: 1.25rem 0;
+}
+
+/* Styling the list of students */
+.card-group-list{
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.student-information-list{
+    padding: 1.25rem;
+}
+
+.student-information-list h3{
+    text-align: center;
+}
+/* Ending the styling of the students list */
+
+@media screen and (max-width: 84.375rem) {
+    .formulaire{
+        max-width: 40rem;
+    }
+
+    .card{
+        max-width: 32rem;
+    }
+}
+
+@media screen and (max-width: 75rem) {
+    .formulaire{
+        max-width: 35rem;
+    }
+
+    .card{
+        max-width: 27rem;
+    }
+}
+
+@media screen and (max-width: 66.875rem) {
+    .divider{
+        flex-direction: column;
+    }
+
+    .formulaire{
+        margin: 0 auto 4.25rem auto;
+    }
+
+    .card-group{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .student-information h3{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 58.75rem) {
+    .card-group{
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 25.75rem) {
+    .formulaire{
+        max-width: 21.875rem;
+    }
+
+    .main-content-container{
+        padding: 0;
+    }
+
+    .btn-save{
+        padding: 0.375rem;
+    }
+}
+
+@media screen and (max-width: 61.25rem) {
+    .card-group-list{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* After we need to handle the responsivity a little bit */
+
+
+/* Styling the page of details */
+/* Ending the styling of the details page */
