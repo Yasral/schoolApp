@@ -96,7 +96,7 @@ btnAdd.addEventListener("click", (e) => {
     displayCards(allValues);
 
     // Reseting the form
-    formulaire.reset();
+    // formulaire.reset();
 }) 
 
 // Handling the display of the card content 
@@ -132,6 +132,11 @@ let displayCards = (someContent) =>{
                     </div>     
         `)
             identifiant++
+            // Updating the values
+            const updateBtn = document.querySelector(".fa-edit");
+            updateBtn.addEventListener("click", (e) => {
+                updateCard(content)
+            });
         });
         
     // })
@@ -140,12 +145,11 @@ let displayCards = (someContent) =>{
     const deleteBtn = document.querySelector(".fa-trash-alt");
     deleteBtn.addEventListener("click", removeCard);
 
-    // Updating the values
-    const updateBtn = document.querySelector(".fa-edit");
-    updateBtn.addEventListener("click", (e) => {
-        updateCard(someContent)
-        
-    });
+    // // Updating the values
+    // const updateBtn = document.querySelector(".fa-edit");
+    // updateBtn.addEventListener("click", (e) => {
+    //     updateCard(someContent) 
+    // });
 }
 
 // Removing a card
@@ -162,37 +166,32 @@ let updateCard = (valeur) =>{
 
     // Array code
     const updateBtn = document.querySelector(".fa-edit");
-    console.log(updateBtn);
-    let updateBtnId = updateBtn.parentElement.parentElement.parentElement.dataset.id
-    console.log(updateBtnId);
-    let numberBtnId = Number(updateBtnId);
-    console.log(numberBtnId);
 
-    formulaire.nom.value = valeur[numberBtnId].Nom;
-    formulaire.prenom.value = valeur[numberBtnId].Prenom;
+    formulaire.nom.value = valeur.Nom;
+    formulaire.prenom.value = valeur.Prenom;
     // Have to Handle the select
-    if(valeur[numberBtnId].Niveau == "Debutant"){
+    if(valeur.Niveau == "Debutant"){
         formulaire.formlevel[0].selected = true
     }
 
-    if (valeur[numberBtnId].Niveau == "Intermediaire") {
+    if (valeur.Niveau == "Intermediaire") {
         formulaire.formlevel[1].selected = true
     }
 
-    if (valeur[numberBtnId].Niveau == "Avance") {
+    if (valeur.Niveau == "Avance") {
         formulaire.formlevel[2].selected = true
     }
 
-    formulaire.formlevel.value = valeur[numberBtnId].Niveau;
-    formulaire.bio.value = valeur[numberBtnId].Biographie;
-    formulaire.mockup.value = valeur[numberBtnId].Maquette;
-    formulaire.database.value = valeur[numberBtnId].BaseDonnee;
-    formulaire.ui.value = valeur[numberBtnId].InterfaceUtilisateur;
-    formulaire.composant.value = valeur[numberBtnId].Composant;
-    formulaire.cms.value = valeur[numberBtnId].Cms;
-    formulaire.interface.value = valeur[numberBtnId].InterfaceStatique;
-    formulaire.gestion.value = valeur[numberBtnId].GestionContenu;
-    formulaire.backend.value = valeur[numberBtnId].BackEnd;
+    formulaire.formlevel.value = valeur.Niveau;
+    formulaire.bio.value = valeur.Biographie;
+    formulaire.mockup.value = valeur.Maquette;
+    formulaire.database.value = valeur.BaseDonnee;
+    formulaire.ui.value = valeur.InterfaceUtilisateur;
+    formulaire.composant.value = valeur.Composant;
+    formulaire.cms.value = valeur.Cms;
+    formulaire.interface.value = valeur.InterfaceStatique;
+    formulaire.gestion.value = valeur.GestionContenu;
+    formulaire.backend.value = valeur.BackEnd;
 
     btnUpdate.addEventListener("click", (e) =>{
         e.preventDefault()
@@ -206,19 +205,19 @@ let updateCard = (valeur) =>{
         bioDescription.textContent = formulaire.bio.value;
         cardLevel.textContent = formulaire.formlevel.value;
 
-        valeur[numberBtnId].Nom = monNom.textContent;
-        valeur[numberBtnId].Prenom = monPrenom.textContent;
-        valeur[numberBtnId].Biographie = bioDescription.textContent;
-        valeur[numberBtnId].Niveau = cardLevel.textContent;
+        valeur.Nom = monNom.textContent;
+        valeur.Prenom = monPrenom.textContent;
+        valeur.Biographie = bioDescription.textContent;
+        valeur.Niveau = cardLevel.textContent;
         // Have to do the same with the ones left
-        valeur[numberBtnId].Maquette = formulaire.mockup.value;
-        valeur[numberBtnId].BaseDonnee = formulaire.database.value;
-        valeur[numberBtnId].InterfaceUtilisateur = formulaire.ui.value;
-        valeur[numberBtnId].Composant = formulaire.composant.value;
-        valeur[numberBtnId].Cms = formulaire.cms.value;
-        valeur[numberBtnId].InterfaceStatique = formulaire.interface.value;
-        valeur[numberBtnId].GestionContenu = formulaire.gestion.value;
-        valeur[numberBtnId].BackEnd = formulaire.backend.value;
+        valeur.Maquette = formulaire.mockup.value;
+        valeur.BaseDonnee = formulaire.database.value;
+        valeur.InterfaceUtilisateur = formulaire.ui.value;
+        valeur.Composant = formulaire.composant.value;
+        valeur.Cms = formulaire.cms.value;
+        valeur.InterfaceStatique = formulaire.interface.value;
+        valeur.GestionContenu = formulaire.gestion.value;
+        valeur.BackEnd = formulaire.backend.value;
 
         btnUpdate.classList.add("hide-form-btn");
         btnAdd.classList.remove("hide-form-btn");
