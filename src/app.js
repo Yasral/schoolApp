@@ -24,6 +24,10 @@ const cardGroup = document.querySelector(".card-group");
 
 const allValues = [];
 
+// Handling the database
+const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDMzNjk4OCwiZXhwIjoxOTU1OTEyOTg4fQ.O26EjW0Jzrc88FqWI-vffu3w8BZb5rIog5lXRvZsdLY";
+const API_URL = "https://ucfwtahmifokneimhmrx.supabase.co/rest/v1/studentList";
+
 // Handling the number of letter of the textearea
 
 biographie.addEventListener("input", (e) => {
@@ -49,6 +53,7 @@ biographie.addEventListener("input", (e) => {
 
 }, true)
 
+// Getting the values of the card
 btnAdd.addEventListener("click", (e) => {
 
     e.preventDefault();
@@ -85,18 +90,23 @@ btnAdd.addEventListener("click", (e) => {
         BackEnd: backEnd.value
     }
 
-    formulaire.reset();
-
     // allValues.push(formValues);
-    displayCards(formValues); 
+    // displayCards(formValues); 
+    allValues.push(formValues);
+    displayCards(allValues);
+
+    // Reseting the form
+    formulaire.reset();
 }) 
 
 // Handling the display of the card content 
 
-let identifiant = 1;
+let identifiant = 0;
 
 let displayCards = (someContent) =>{
-        cardGroup.insertAdjacentHTML("afterbegin", `
+        cardGroup.innerHTML = "";
+        someContent.forEach((content) => {
+            cardGroup.insertAdjacentHTML("afterbegin", `
             <div class="card" data-id="${identifiant}">
                 <div class="card-header"></div>
     
@@ -105,23 +115,25 @@ let displayCards = (someContent) =>{
                             <img src="" alt="Picture" class="avatar">
                         </div>
                         <div class="content">
-                            <h3 class="fullName"><span class="mon-nom">${someContent.Nom}</span> <span class="mon-prenom">${someContent.Prenom}</span></h3>
+                            <h3 class="fullName"><span class="mon-nom">${content.Nom}</span> <span class="mon-prenom">${content.Prenom}</span></h3>
                             <i class="far fa-edit"></i>
                             <i class="far fa-trash-alt"></i>
                         </div>
                     </div>
                         <p class="biographie-description">
-                            ${someContent.Biographie}
+                            ${content.Biographie}
                         </p>
                             
                         <div class="card-footer">
                             <p class="card-level">
-                                ${someContent.Niveau}
+                                ${content.Niveau}
                             </p>
                         </div>
                     </div>     
         `)
-        identifiant++
+            identifiant++
+        });
+        
     // })
 
     // Deleting the values
@@ -141,43 +153,46 @@ let removeCard = (e) =>{
     e.target.parentElement.parentElement.parentElement.remove()
 }
 
-// Updating a card
-const updateBtn = document.querySelector(".fa-edit");
-
 let updateCard = (valeur) =>{
-    console.log(formulaire.interface.textContent);
-
     const btnUpdate = document.querySelector(".btn-delete");
     btnUpdate.classList.remove("hide-form-btn");
     btnAdd.classList.add("hide-form-btn");
-    formulaire.nom.value = valeur.Nom;
-    formulaire.prenom.value = valeur.Prenom;
+
+    console.log(valeur);
+
+    // Array code
+    const updateBtn = document.querySelector(".fa-edit");
+    console.log(updateBtn);
+    let updateBtnId = updateBtn.parentElement.parentElement.parentElement.dataset.id
+    console.log(updateBtnId);
+    let numberBtnId = Number(updateBtnId);
+    console.log(numberBtnId);
+
+    formulaire.nom.value = valeur[numberBtnId].Nom;
+    formulaire.prenom.value = valeur[numberBtnId].Prenom;
     // Have to Handle the select
-    if(valeur.Niveau == "Debutant"){
+    if(valeur[numberBtnId].Niveau == "Debutant"){
         formulaire.formlevel[0].selected = true
-        console.log("Yes");
     }
 
-    if (valeur.Niveau == "Intermediaire") {
+    if (valeur[numberBtnId].Niveau == "Intermediaire") {
         formulaire.formlevel[1].selected = true
-        console.log("Yes");
     }
 
-    if (valeur.Niveau == "Avance") {
+    if (valeur[numberBtnId].Niveau == "Avance") {
         formulaire.formlevel[2].selected = true
-        console.log("Yes");
     }
 
-    formulaire.formlevel.value = valeur.Niveau;
-    formulaire.bio.value = valeur.Biographie;
-    formulaire.mockup.value = valeur.Maquette;
-    formulaire.database.value = valeur.BaseDonnee;
-    formulaire.ui.value = valeur.InterfaceUtilisateur;
-    formulaire.composant.value = valeur.Composant;
-    formulaire.cms.value = valeur.Cms;
-    formulaire.interface.value = valeur.InterfaceStatique;
-    formulaire.gestion.value = valeur.GestionContenu;
-    formulaire.backend.value = valeur.BackEnd;
+    formulaire.formlevel.value = valeur[numberBtnId].Niveau;
+    formulaire.bio.value = valeur[numberBtnId].Biographie;
+    formulaire.mockup.value = valeur[numberBtnId].Maquette;
+    formulaire.database.value = valeur[numberBtnId].BaseDonnee;
+    formulaire.ui.value = valeur[numberBtnId].InterfaceUtilisateur;
+    formulaire.composant.value = valeur[numberBtnId].Composant;
+    formulaire.cms.value = valeur[numberBtnId].Cms;
+    formulaire.interface.value = valeur[numberBtnId].InterfaceStatique;
+    formulaire.gestion.value = valeur[numberBtnId].GestionContenu;
+    formulaire.backend.value = valeur[numberBtnId].BackEnd;
 
     btnUpdate.addEventListener("click", (e) =>{
         e.preventDefault()
@@ -191,19 +206,19 @@ let updateCard = (valeur) =>{
         bioDescription.textContent = formulaire.bio.value;
         cardLevel.textContent = formulaire.formlevel.value;
 
-        valeur.Nom = monNom.textContent;
-        valeur.Prenom = monPrenom.textContent;
-        valeur.Biographie = bioDescription.textContent;
-        valeur.Niveau = cardLevel.textContent;
+        valeur[numberBtnId].Nom = monNom.textContent;
+        valeur[numberBtnId].Prenom = monPrenom.textContent;
+        valeur[numberBtnId].Biographie = bioDescription.textContent;
+        valeur[numberBtnId].Niveau = cardLevel.textContent;
         // Have to do the same with the ones left
-        valeur.Maquette = formulaire.mockup.value;
-        valeur.BaseDonnee = formulaire.database.value;
-        valeur.InterfaceUtilisateur = formulaire.ui.value;
-        valeur.Composant = formulaire.composant.value;
-        valeur.Cms = formulaire.cms.value;
-        valeur.InterfaceStatique = formulaire.interface.value;
-        valeur.GestionContenu = formulaire.gestion.value;
-        valeur.BackEnd = formulaire.backend.value;
+        valeur[numberBtnId].Maquette = formulaire.mockup.value;
+        valeur[numberBtnId].BaseDonnee = formulaire.database.value;
+        valeur[numberBtnId].InterfaceUtilisateur = formulaire.ui.value;
+        valeur[numberBtnId].Composant = formulaire.composant.value;
+        valeur[numberBtnId].Cms = formulaire.cms.value;
+        valeur[numberBtnId].InterfaceStatique = formulaire.interface.value;
+        valeur[numberBtnId].GestionContenu = formulaire.gestion.value;
+        valeur[numberBtnId].BackEnd = formulaire.backend.value;
 
         btnUpdate.classList.add("hide-form-btn");
         btnAdd.classList.remove("hide-form-btn");
