@@ -15,7 +15,7 @@ const database = document.querySelector('input[name="database"]');
 const userInterface = document.querySelector('input[name="ui"]');
 const composant = document.querySelector('input[name="composant"]');
 const cms = document.querySelector('input[name="cms"]');
-// const uiStatique = document.querySelector('input[name="interfacestatique"]');
+const statiqueInterface = document.querySelector('input[name="interface"]');
 const gestionContenus = document.querySelector('input[name="gestion"]');
 const backEnd = document.querySelector('input[name="backend"]');
 const formulaire = document.querySelector("form");
@@ -27,7 +27,6 @@ const allValues = [];
 // Handling the number of letter of the textearea
 
 biographie.addEventListener("input", (e) => {
-    // e.target.classList.add("red-border")
     const texteMaximal = 20;
     const texteSaisi = e.target.value;
     const longueurTexteSaisi = texteSaisi.length
@@ -51,16 +50,6 @@ biographie.addEventListener("input", (e) => {
 }, true)
 
 btnAdd.addEventListener("click", (e) => {
-    // let name = nom.value;
-    // let surname = prenom.value;
-    // let level = niveau.value;
-    // let description = biographie.value;
-    // let mockup = maquette.value;
-    // let ui = userInterface.value;
-    // let composantDonnee = composant.value;
-    // let uiStatiques = uiStatique.value;
-    // let gestionContenu = gestionContenus.value;
-    // let backEnds = backEnd.value;
 
     e.preventDefault();
 
@@ -91,12 +80,12 @@ btnAdd.addEventListener("click", (e) => {
         InterfaceUtilisateur: userInterface.value,
         Composant: composant.value,
         Cms: cms.value,
-        // InterfaceStatique: uiStatique.value,
+        InterfaceStatique: statiqueInterface.value,
         GestionContenu: gestionContenus.value,
         BackEnd: backEnd.value
     }
 
-    // formulaire.reset();
+    formulaire.reset();
 
     // allValues.push(formValues);
     displayCards(formValues); 
@@ -107,9 +96,6 @@ btnAdd.addEventListener("click", (e) => {
 let identifiant = 1;
 
 let displayCards = (someContent) =>{
-    // let formInput = [];
-    // let divContent = ""
-    // someContent.forEach((content) =>{
         cardGroup.insertAdjacentHTML("afterbegin", `
             <div class="card" data-id="${identifiant}">
                 <div class="card-header"></div>
@@ -134,7 +120,6 @@ let displayCards = (someContent) =>{
                             </p>
                         </div>
                     </div>     
-    
         `)
         identifiant++
     // })
@@ -160,19 +145,37 @@ let removeCard = (e) =>{
 const updateBtn = document.querySelector(".fa-edit");
 
 let updateCard = (valeur) =>{
+    console.log(formulaire.interface.textContent);
+
     const btnUpdate = document.querySelector(".btn-delete");
     btnUpdate.classList.remove("hide-form-btn");
     btnAdd.classList.add("hide-form-btn");
     formulaire.nom.value = valeur.Nom;
     formulaire.prenom.value = valeur.Prenom;
     // Have to Handle the select
+    if(valeur.Niveau == "Debutant"){
+        formulaire.formlevel[0].selected = true
+        console.log("Yes");
+    }
+
+    if (valeur.Niveau == "Intermediaire") {
+        formulaire.formlevel[1].selected = true
+        console.log("Yes");
+    }
+
+    if (valeur.Niveau == "Avance") {
+        formulaire.formlevel[2].selected = true
+        console.log("Yes");
+    }
+
+    formulaire.formlevel.value = valeur.Niveau;
     formulaire.bio.value = valeur.Biographie;
     formulaire.mockup.value = valeur.Maquette;
     formulaire.database.value = valeur.BaseDonnee;
     formulaire.ui.value = valeur.InterfaceUtilisateur;
     formulaire.composant.value = valeur.Composant;
     formulaire.cms.value = valeur.Cms;
-    // formulaire.interfacestatique.value = valeur.InterfaceStatique;
+    formulaire.interface.value = valeur.InterfaceStatique;
     formulaire.gestion.value = valeur.GestionContenu;
     formulaire.backend.value = valeur.BackEnd;
 
@@ -181,52 +184,29 @@ let updateCard = (valeur) =>{
         let monNom = document.querySelector(".mon-nom");
         let monPrenom = document.querySelector(".mon-prenom");
         let bioDescription = document.querySelector(".biographie-description");
+        let cardLevel = document.querySelector(".card-level");
 
-        monNom.innerHTML = formulaire.nom.value;
-        monPrenom.innerHTML = formulaire.prenom.value;
-        bioDescription.innerHTML = formulaire.bio.value;
-        
+        monNom.textContent = formulaire.nom.value;
+        monPrenom.textContent = formulaire.prenom.value;
+        bioDescription.textContent = formulaire.bio.value;
+        cardLevel.textContent = formulaire.formlevel.value;
+
+        valeur.Nom = monNom.textContent;
+        valeur.Prenom = monPrenom.textContent;
+        valeur.Biographie = bioDescription.textContent;
+        valeur.Niveau = cardLevel.textContent;
         // Have to do the same with the ones left
+        valeur.Maquette = formulaire.mockup.value;
+        valeur.BaseDonnee = formulaire.database.value;
+        valeur.InterfaceUtilisateur = formulaire.ui.value;
+        valeur.Composant = formulaire.composant.value;
+        valeur.Cms = formulaire.cms.value;
+        valeur.InterfaceStatique = formulaire.interface.value;
+        valeur.GestionContenu = formulaire.gestion.value;
+        valeur.BackEnd = formulaire.backend.value;
 
         btnUpdate.classList.add("hide-form-btn");
         btnAdd.classList.remove("hide-form-btn");
+        
     })
-    
-    // Getting the form and updating the values
-    // formulaire.addEventListener("submit", (e) =>{
-
-    //     e.preventDefault();
-
-    //     if (nom.value.trim().length < 5) {
-    //         nom.classList.remove("green-border");
-    //         nom.classList.add("red-border");
-    //         return
-    //     } else {
-    //         nom.classList.remove("red-border");
-    //         nom.classList.add("green-border");
-    //     }
-
-    //     if (prenom.value.trim().length < 3) {
-    //         prenom.classList.remove("green-border");
-    //         prenom.classList.add("red-border");
-    //         return
-    //     } else {
-    //         prenom.classList.remove("red-border");
-    //         prenom.classList.add("green-border");
-    //     }
-    //     const formValues = {
-    //         Nom: nom.value,
-    //         Prenom: prenom.value,
-    //         Niveau: niveau.value,
-    //         Biographie: biographie.value,
-    //         Maquette: maquette.value,
-    //         BaseDonnee: database.value,
-    //         InterfaceUtilisateur: userInterface.value,
-    //         Composant: composant.value,
-    //         Cms: cms.value,
-    //         // InterfaceStatique: uiStatique.value,
-    //         GestionContenu: gestionContenus.value,
-    //         BackEnd: backEnd.value
-    //     }  
-    // })
 }
