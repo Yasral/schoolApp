@@ -50,7 +50,7 @@ biographie.addEventListener("input", (e) => {
 
 }, true)
 
-formulaire.addEventListener("submit", (e) => {
+btnAdd.addEventListener("click", (e) => {
     // let name = nom.value;
     // let surname = prenom.value;
     // let level = niveau.value;
@@ -96,7 +96,7 @@ formulaire.addEventListener("submit", (e) => {
         BackEnd: backEnd.value
     }
 
-    formulaire.reset();
+    // formulaire.reset();
 
     // allValues.push(formValues);
     displayCards(formValues); 
@@ -119,7 +119,7 @@ let displayCards = (someContent) =>{
                             <img src="" alt="Picture" class="avatar">
                         </div>
                         <div class="content">
-                            <h3 class="fullName"><span>${someContent.Nom}</span> <span>${someContent.Prenom}</span></h3>
+                            <h3 class="fullName"><span class="mon-nom">${someContent.Nom}</span> <span class="mon-prenom">${someContent.Prenom}</span></h3>
                             <i class="far fa-edit"></i>
                             <i class="far fa-trash-alt"></i>
                         </div>
@@ -160,6 +160,9 @@ let removeCard = (e) =>{
 const updateBtn = document.querySelector(".fa-edit");
 
 let updateCard = (valeur) =>{
+    const btnUpdate = document.querySelector(".btn-delete");
+    btnUpdate.classList.remove("hide-form-btn");
+    btnAdd.classList.add("hide-form-btn");
     formulaire.nom.value = valeur.Nom;
     formulaire.prenom.value = valeur.Prenom;
     // Have to Handle the select
@@ -172,6 +175,22 @@ let updateCard = (valeur) =>{
     // formulaire.interfacestatique.value = valeur.InterfaceStatique;
     formulaire.gestion.value = valeur.GestionContenu;
     formulaire.backend.value = valeur.BackEnd;
+
+    btnUpdate.addEventListener("click", (e) =>{
+        e.preventDefault()
+        let monNom = document.querySelector(".mon-nom");
+        let monPrenom = document.querySelector(".mon-prenom");
+        let bioDescription = document.querySelector(".biographie-description");
+
+        monNom.innerHTML = formulaire.nom.value;
+        monPrenom.innerHTML = formulaire.prenom.value;
+        bioDescription.innerHTML = formulaire.bio.value;
+        
+        // Have to do the same with the ones left
+
+        btnUpdate.classList.add("hide-form-btn");
+        btnAdd.classList.remove("hide-form-btn");
+    })
     
     // Getting the form and updating the values
     // formulaire.addEventListener("submit", (e) =>{

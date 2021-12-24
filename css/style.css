@@ -108,7 +108,7 @@ input:focus, textarea:focus{
     padding: 1.25rem 0;
 }
 
-.skills + button, .student-information button, .student-information-list button{
+.student-information button, .student-information-list button{
     border: none;
     padding: 1.25rem;
     border-radius: 0.375rem;
@@ -118,9 +118,20 @@ input:focus, textarea:focus{
     cursor: pointer;
 }
 
-.skills + button{
+.btn-add, .btn-delete{
+    border: none;
+    padding: 1.25rem;
+    border-radius: 0.375rem;
+    background-color: #a91750;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
     width: 7.25rem;
 }
+
+/* .skills + button{
+    width: 7.25rem;
+} */
 
 .student-information button{
      width: 8.25rem;
@@ -134,7 +145,7 @@ input:focus, textarea:focus{
     padding: 0.9375rem 0.625rem;
 }
 
-.body-content{
+.body-content, .btns{
     display: flex;
     justify-content: space-between;
 }
@@ -224,6 +235,15 @@ input:focus, textarea:focus{
     opacity: 0.2;
 }
 /* End of the content handled by the js */
+
+/* Handling the form btns */
+.hide-form-btn{
+    display: none;
+}
+
+.show-form-btn{
+    display: block;
+}
 
 @media screen and (max-width: 84.375rem) {
     .formulaire{
