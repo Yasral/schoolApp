@@ -156,7 +156,7 @@ input:focus, textarea:focus{
 } */
 
 .card{
-    max-width: 41.875rem;
+    width: 41.875rem;
     padding: 1.25rem;
     margin-bottom: 1.25rem;
 }
@@ -166,8 +166,8 @@ input:focus, textarea:focus{
 }
 
 .content{
-    width: 13.5rem;
-    max-width: 12.5 rem ;
+    width: 15.5rem;
+    max-width: 14.5 rem ;
     justify-content: space-between;
 }
 
