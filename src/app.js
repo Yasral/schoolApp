@@ -94,9 +94,10 @@ btnAdd.addEventListener("click", (e) => {
     // displayCards(formValues); 
     allValues.push(formValues);
     displayCards(allValues);
+    console.log(allValues);
 
     // Reseting the form
-    // formulaire.reset();
+    formulaire.reset();
 }) 
 
 // Handling the display of the card content 
@@ -145,16 +146,15 @@ let displayCards = (someContent) =>{
     const deleteBtn = document.querySelector(".fa-trash-alt");
     deleteBtn.addEventListener("click", removeCard);
 
-    // // Updating the values
-    // const updateBtn = document.querySelector(".fa-edit");
-    // updateBtn.addEventListener("click", (e) => {
-    //     updateCard(someContent) 
-    // });
+    // This is the change
+    // identifiant++
 }
 
 // Removing a card
 let removeCard = (e) =>{
     e.target.parentElement.parentElement.parentElement.remove()
+    let parentId = e.target.parentElement.parentElement.parentElement.dataset.id
+    console.log(parentId);
 }
 
 let updateCard = (valeur) =>{
@@ -218,6 +218,9 @@ let updateCard = (valeur) =>{
         valeur.InterfaceStatique = formulaire.interface.value;
         valeur.GestionContenu = formulaire.gestion.value;
         valeur.BackEnd = formulaire.backend.value;
+
+        // Reinitialisation du formulaire
+        formulaire.reset();
 
         btnUpdate.classList.add("hide-form-btn");
         btnAdd.classList.remove("hide-form-btn");
