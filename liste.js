@@ -51,7 +51,7 @@ let displayCards = (content) => {
                         <div class="content">
                             <h3 class="fullName"><span class="mon-nom">${content.Nom}</span> <span class="mon-prenom">${content.Prenom}</span></h3>
                             <i class="far fa-edit"></i>
-                            <i class="far fa-trash-alt"></i>
+                            <i class="far fa-trash-alt detail-delete"></i>
                              <i class="far fa-address-card"></i>
                         </div>
                     </div>
@@ -68,7 +68,27 @@ let displayCards = (content) => {
         `)
 
         let detailBtn = document.querySelector(".fa-address-card");
-        let cardId = detailBtn.parentElement.parentElement.parentElement.getAttribute("data-id");
+        let deleteBtn = document.querySelector(".detail-delete");
+
+        deleteBtn.addEventListener("click", (e)=>{
+            let cardToDelete = e.target.parentElement.parentElement.parentElement;
+            let cardId = cardToDelete.getAttribute("data-id");
+            fetch(API_URL + "?id=eq." + cardId,{
+                method: "DELETE",
+                headers: {
+                    apikey: API_KEY,
+                    "Content-Type": "application/json",
+                     Prefer: "return=representation",
+                }
+            })
+            .then((response)=> response.json())
+            .then((data) =>{
+                let identifiantCarte = data[0].id;
+                if(identifiantCarte == cardId){
+                    cardToDelete.remove();
+                }
+            })
+        });
 
         detailBtn.addEventListener("click", (e)=> {
             cardGroupList.classList.add("hide-content");
