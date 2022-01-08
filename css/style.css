@@ -26,10 +26,33 @@ body{
     margin: 0 auto;
 }
 
-.main-content-container{
+.main-content-container, header, .detail-body-content{
     padding: 1.875rem;
 }
 /* End of the reusable parts */
+
+/* Styling the header */
+header{
+   box-shadow: 0 0.4375rem 1.5625rem rgba(0, 0, 0, 0.25);
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 550;
+    text-transform: uppercase;
+    padding: 0.6rem 0.5rem;
+}
+
+nav a:hover{
+    background-color: #A91750;
+    color: #fff;
+    border-radius: 0.375rem;
+}
+
+nav ul {
+    max-width: 15.375rem;
+}
 
 /* Styling the main content */
 textarea:focus, input:focus{
@@ -145,7 +168,7 @@ input:focus, textarea:focus{
     padding: 0.9375rem 0.625rem;
 }
 
-.body-content, .btns{
+.body-content, .btns, nav ul, .modal-header, .header-content{
     display: flex;
     justify-content: space-between;
 }
@@ -158,7 +181,7 @@ input:focus, textarea:focus{
     justify-content: space-around;
 }
 
-.formulaire{
+.formulaire, #modal-form, .modal-content{
     max-width: 50rem;
 }
 
@@ -210,6 +233,7 @@ input:focus, textarea:focus{
 .card-group-list{
     padding: 1.25rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
@@ -237,12 +261,95 @@ input:focus, textarea:focus{
 /* End of the content handled by the js */
 
 /* Handling the form btns */
-.hide-form-btn{
+.hide-content{
     display: none;
 }
 
 .show-form-btn{
     display: block;
+}
+
+/* Styling the modal */
+.modal{
+    /* display: none;  */
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(227,226,223); 
+    background-color: rgba(227,226,223,1);
+    }
+
+.modal-content{
+    padding: 0.8rem;
+    margin: auto;
+}
+
+.modal-header{
+    padding: 0.8rem 0rem;
+}
+
+.fa-window-close:hover{
+    cursor: pointer;
+}
+
+.detailCard{
+    padding: 0.8rem;
+}
+
+.detail-body-content{
+    max-width: 56.25rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.header-content, .detail-level, .detail-description, .detail-skills{
+    padding: 1.25rem 0.5rem;
+}
+
+.detail-nom, .detail-skills label{
+    text-transform: uppercase;
+}
+
+.detail-prenom{
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.detail-level{
+    font-weight: 600;
+}
+
+.detail-skills div{
+    padding: 1.25rem 0;
+}
+
+progress{
+    /* background-color: green; */
+    height: 1.875rem;
+}
+
+progress::-webkit-progress-bar{
+    /* background-color: green; */
+    height: 1.875rem;
+}
+
+progress::-webkit-progress-value{
+    height: 1.875rem;
+    background-color: green;
+}
+
+progress::-moz-progress-bar{
+    background-color: green;
+    height: 1.875rem;
 }
 
 @media screen and (max-width: 84.375rem) {
@@ -261,7 +368,7 @@ input:focus, textarea:focus{
     }
 
     .card{
-        max-width: 27rem;
+        max-width: 24rem;
     }
 }
 
@@ -304,12 +411,21 @@ input:focus, textarea:focus{
     .btn-save{
         padding: 0.375rem;
     }
+
+    section.student-information-list, .card-group-list{
+        padding: 1.25rem 0.25rem;
+    }
+
+     .card-group-list{
+        justify-content: space-between;
+    }
 }
 
 @media screen and (max-width: 61.25rem) {
     .card-group-list{
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
     }
 }
 

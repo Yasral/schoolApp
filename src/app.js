@@ -112,10 +112,10 @@ let displayCards = (someContent) =>{
     
                      <div class="body-content">
                         <div class="body-img">
-                            <img src="" alt="Picture" class="avatar">
+                            <img src="#" alt="Picture" class="avatar">
                         </div>
                         <div class="content">
-                            <h3 class="fullName"><span class="mon-nom">${content.Nom}</span> <span class="mon-prenom">${content.Prenom}</span></h3>
+                            <h3><span class="mon-nom">${content.Nom}</span> <span class="mon-prenom">${content.Prenom}</span></h3>
                             <i class="far fa-edit"></i>
                             <i class="far fa-trash-alt"></i>
                         </div>

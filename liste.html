@@ -10,71 +10,153 @@
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./dist/bundle.js" defer></script>
-    <title>Page des details</title>
+    <!-- <script src="./dist/bundle.js" defer></script> -->
+    <script src="liste.js" defer></script>
+    <title>Liste des apprenants</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i></a></li>
+                <li><a href="liste.html">Liste des apprenants</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <section class="student-information-list">
         <h3>Liste des Apprenants</h3>
         <div class="card-group-list">
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header"></div>
-                <div class="card-body">
                     <div class="body-content">
                         <div class="body-img">
-                            <img src="" alt="Picture" class="avatar">
+                            <img src="#" alt="Picture" class="avatar">
                         </div>
                         <div class="content">
-                            <h3 class="fullName">Nom et Prenom</h3>
+                            <h3 class="fullName"><span class="mon-nom">Nom</span> <span class="mon-prenom">Prenom</span></h3>
                             <i class="far fa-edit"></i>
                             <i class="far fa-trash-alt"></i>
+                            <i class="far fa-address-card"></i>
                         </div>
-                    </div>
-                    <p class="biographie-description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Sint fugiat accusantium eos doloribus dolorum! Accusamus non voluptatem cum harum facilis.
-                        Quae aut sit aliquam tempora incidunt mollitia vitae consectetur hic.
-                    </p>
-    
-                    <div class="card-footer">
-                        <p class="card-level">
-                            Niveau
-                        </p>
-                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-header"></div>
-                <div class="card-body">
-                    <div class="body-content">
-                        <div class="body-img">
-                            <img src="" alt="Picture" class="avatar">
-                        </div>
-                        <div class="content">
-                            <h3 class="fullName">Nom et Prenom</h3>
-                            <i class="far fa-edit"></i>
-                            <i class="far fa-trash-alt"></i>
-                        </div>
-                    </div>
-                    <p class="biographie-description">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Sint fugiat accusantium eos doloribus dolorum! Accusamus non voluptatem cum harum facilis.
-                        Quae aut sit aliquam tempora incidunt mollitia vitae consectetur hic.
-                    </p>
+                <p class="biographie-description">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Sint fugiat accusantium eos doloribus dolorum! Accusamus non voluptatem cum harum facilis.
+                    Quae aut sit aliquam tempora incidunt mollitia vitae consectetur hic.
+                </p>
     
-                    <div class="card-footer">
-                        <p class="card-level">
-                            Niveau
+                <div class="card-footer">
+                    <p class="card-level">
+                        Niveau
+                    </p>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <div class="modal hide-content">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Modification</h3>
+                <!-- <span class="close"></span> -->
+                <i class="fas fa-window-close modal-close"></i>
+            </div>
+            <div class="modal-body">
+                <form id="modal-form">
+                    <div>
+                        <!-- <label for="nom">Nom</label> -->
+                        <input type="text" name="nom" id="nom" placeholder="Nom">
+                    </div>
+                    <div>
+                        <!-- <label for="prenom">Prenom</label> -->
+                        <input type="text" name="prenom" id="prenom" placeholder="Prenom">
+                    </div>
+                    <div>
+                        <label for="form-level">Niveau</label>
+                        <select name="formlevel" id="formlevel">
+                            <option value="Debutant">Developpeur Debutant</option>
+                            <option value="Intermediaire">Developpeur Intermediaire</option>
+                            <option value="Avance">Developpeur Avance</option>
+                        </select>
+                    </div>
+                    <div class="form-description">
+                        <!-- <label for="bio">Biographie</label> -->
+                        <textarea name="bio" id="bio" cols="40" rows="7" placeholder="Vous pouvez ecrire votre biographie"></textarea>
+                        <p class="char-handler">
+                            <span class="char-number"></span> / 130
                         </p>
                     </div>
+                    <ul class="skills">
+                        <li><label for="mockup">Maquettage</label><input type="number" name="mockup" id="mockup"></li>
+                        <li><label for="database">Creer une base de donnees</label><input type="number" name="database" id="database"
+                                min="0" max="100"></li>
+                        <li><label for="ui">Developper un UI dynamique</label><input type="number" name="ui" id="ui" min="0" max="100">
+                        </li>
+                        <li><label for="composant">Developper des composants d'acces aux donnees</label><input type="number"
+                                name="composant" id="composant" min="0" max="100"></li>
+                        <li><label for="cms">Utilisation d'un CMS</label><input type="number" name="cms" id="cms" min="0" max="100">
+                        </li>
+                        <li><label for="interface">Realiser un UI statique</label><input type="number" name="interface" id="interface"
+                                min="0" max="100"></li>
+                        <li><label for="gestion">Elaborer des composants de gestion de contenus</label><input type="number"
+                                name="gestion" id="gestion" min="0" max="100"></li>
+                        <li><label for="backend">Developper la partie back end d'une application</label><input type="number"
+                                name="backend" id="backend" min="0" max="100"></li>
+                    </ul>
+                    <div class="btns">
+                        <button class="btn-add-list">Modifier</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+    <div class="detailCard hide-content">
+        <div class="detail-body-content">
+            <div class="header-content">
+                <h3 class="fullName"><span class="detail-nom">Nom</span> <span class="detail-prenom">Prenom</span></h3>
+                <i class="fas fa-window-close list-close"></i>
+            </div>
+            <p class="card-level detail-level">
+                Niveau
+            </p>
+            <p class="detail-description">
+            </p>
+            <div class="detail-skills">
+                <div>
+                    <label for="detail-maquette">Maquettage:</label>
+                    <progress id="detail-maquette" value="32" max="100"> 32% </progress>
+                </div>
+                <div>
+                    <label for="detail-database">Creer une base de donnees:</label>
+                    <progress id="detail-database" value="32" max="100"> 32% </progress>
+                </div>
+                <div>
+                    <label for="detail-ui">Developper un UI dynamique:</label>
+                    <progress id="detail-ui" value="32" max="100"> 32% </progress>
+                </div>
+                <div>
+                    <label for="detail-composant">Composant d'acces aux donnees:</label>
+                    <progress id="detail-composant" value="32" max="100"> 32% </progress>
+                </div>
+                <div>
+                    <label for="detail-cms">Utilisation d'un CMS:</label>
+                    <progress id="detail-cms" value="32" max="100"> 32% </progress>
+                </div>
+                <div>
+                    <label for="detail-interface">Realiser un UI statique:</label>
+                    <progress id="detail-interface" value="32" max="100"> 32% </progress>
+                </div>
+                <div>
+                    <label for="detail-gestion">Gestion de contenus:</label>
+                    <progress id="detail-gestion" value="32" max="100"> 32% </progress>
+                </div>
+                <div>
+                    <label for="detail-backend">Developpement back end:</label>
+                    <progress id="detail-backend" value="32" max="100"> 32% </progress>
                 </div>
             </div>
         </div>
-        <!-- <div class="btn-save-list">
-            <button>
-                Sauvegarder
-            </button>
-        </div> -->
-    </section>
+    </div>
 </body>
 </html>
