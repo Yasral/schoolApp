@@ -19,6 +19,7 @@ const statiqueInterface = document.querySelector('input[name="interface"]');
 const gestionContenus = document.querySelector('input[name="gestion"]');
 const backEnd = document.querySelector('input[name="backend"]');
 const formulaire = document.querySelector("form");
+const dbSaveBtn = document.querySelector(".btn-save > button");
 
 const cardGroup = document.querySelector(".card-group");
 
@@ -31,7 +32,7 @@ const API_URL = "https://ucfwtahmifokneimhmrx.supabase.co/rest/v1/studentList";
 // Handling the number of letter of the textearea
 
 biographie.addEventListener("input", (e) => {
-    const texteMaximal = 20;
+    const texteMaximal = 130;
     const texteSaisi = e.target.value;
     const longueurTexteSaisi = texteSaisi.length
 
@@ -76,6 +77,7 @@ btnAdd.addEventListener("click", (e) => {
         prenom.classList.add("green-border");
     }
     const formValues = {
+        index: Date.now(),
         Nom: nom.value,
         Prenom: prenom.value,
         Niveau: niveau.value,
@@ -90,8 +92,6 @@ btnAdd.addEventListener("click", (e) => {
         BackEnd: backEnd.value
     }
 
-    // allValues.push(formValues);
-    // displayCards(formValues); 
     allValues.push(formValues);
     displayCards(allValues);
     console.log(allValues);
@@ -102,11 +102,10 @@ btnAdd.addEventListener("click", (e) => {
 
 // Handling the display of the card content 
 
-let identifiant = 0;
-
 let displayCards = (someContent) =>{
         cardGroup.innerHTML = "";
         someContent.forEach((content) => {
+            let identifiant = content.index;
             cardGroup.insertAdjacentHTML("afterbegin", `
             <div class="card" data-id="${identifiant}">
                 <div class="card-header"></div>
@@ -132,40 +131,50 @@ let displayCards = (someContent) =>{
                         </div>
                     </div>     
         `)
-            identifiant++
             // Updating the values
             const updateBtn = document.querySelector(".fa-edit");
             updateBtn.addEventListener("click", (e) => {
-                updateCard(content)
+                if(formulaire.nom.value != ""){
+                    alert("Veuillez faire la mise a jour en cours d'abord");
+                    return
+                }else{
+                    let carteParent = e.target.parentElement.parentElement.parentElement;
+                    let carteId = carteParent.dataset.id;
+                    allValues.forEach((carte, i) => {
+                        if (carte.index == carteId) {
+                            updateCard(content)
+                            carteParent.remove();
+                            allValues.splice(i, 1);
+                            console.log(allValues);
+                        }
+                    });
+                }  
             });
         });
         
-    // })
-
     // Deleting the values
     const deleteBtn = document.querySelector(".fa-trash-alt");
     deleteBtn.addEventListener("click", removeCard);
-
-    // This is the change
-    // identifiant++
 }
 
 // Removing a card
 let removeCard = (e) =>{
-    e.target.parentElement.parentElement.parentElement.remove()
-    let parentId = e.target.parentElement.parentElement.parentElement.dataset.id
-    console.log(parentId);
+ 
+    allValues.forEach((carte, i) => {
+        let carteParent = e.target.parentElement.parentElement.parentElement;
+        let carteId = carteParent.dataset.id;
+        if (carte.index == carteId) {
+            carteParent.remove();
+            allValues.splice(i, 1);
+            console.log(allValues);
+        }
+    });
 }
 
+// Updating a card
 let updateCard = (valeur) =>{
-    const btnUpdate = document.querySelector(".btn-delete");
-    btnUpdate.classList.remove("hide-form-btn");
-    btnAdd.classList.add("hide-form-btn");
 
     console.log(valeur);
-
-    // Array code
-    const updateBtn = document.querySelector(".fa-edit");
 
     formulaire.nom.value = valeur.Nom;
     formulaire.prenom.value = valeur.Prenom;
@@ -192,38 +201,30 @@ let updateCard = (valeur) =>{
     formulaire.interface.value = valeur.InterfaceStatique;
     formulaire.gestion.value = valeur.GestionContenu;
     formulaire.backend.value = valeur.BackEnd;
-
-    btnUpdate.addEventListener("click", (e) =>{
-        e.preventDefault()
-        let monNom = document.querySelector(".mon-nom");
-        let monPrenom = document.querySelector(".mon-prenom");
-        let bioDescription = document.querySelector(".biographie-description");
-        let cardLevel = document.querySelector(".card-level");
-
-        monNom.textContent = formulaire.nom.value;
-        monPrenom.textContent = formulaire.prenom.value;
-        bioDescription.textContent = formulaire.bio.value;
-        cardLevel.textContent = formulaire.formlevel.value;
-
-        valeur.Nom = monNom.textContent;
-        valeur.Prenom = monPrenom.textContent;
-        valeur.Biographie = bioDescription.textContent;
-        valeur.Niveau = cardLevel.textContent;
-        // Have to do the same with the ones left
-        valeur.Maquette = formulaire.mockup.value;
-        valeur.BaseDonnee = formulaire.database.value;
-        valeur.InterfaceUtilisateur = formulaire.ui.value;
-        valeur.Composant = formulaire.composant.value;
-        valeur.Cms = formulaire.cms.value;
-        valeur.InterfaceStatique = formulaire.interface.value;
-        valeur.GestionContenu = formulaire.gestion.value;
-        valeur.BackEnd = formulaire.backend.value;
-
-        // Reinitialisation du formulaire
-        formulaire.reset();
-
-        btnUpdate.classList.add("hide-form-btn");
-        btnAdd.classList.remove("hide-form-btn");
-        
-    })
 }
+
+// Saving in the database
+dbSaveBtn.addEventListener("click", (e)=>{
+    allValues.forEach((learner) => {
+        delete learner["index"];
+        // Saving the data in the database
+        fetch(API_URL, {
+            method: "POST",
+            headers: {
+                apikey: API_KEY,
+                "Content-Type": "application/json",
+                Prefer: "return=representation",
+            },
+            body: JSON.stringify(learner)
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        })
+    });
+
+   while(allValues.length > 0){
+       allValues.pop(); 
+   }
+   cardGroup.innerHTML = "";
+});
