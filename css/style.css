@@ -74,7 +74,7 @@ section h3:first-child, form div{
     padding: 0 0 1.25rem 0;
 }
 
-form#identification, .form-description, .card-group{
+form#identification, .form-description, .card-group, .modal-form-description{
     display: flex;
     flex-direction: column;
 }
@@ -111,11 +111,11 @@ form select{
     background-color: #fff;
 }
 
-.form-description label{
+.form-description label, .modal-form-description{
     padding-bottom: 1.25rem;
 }
 
-.form-description p{
+.form-description p, .modal-form-description{
     padding: 1.25rem 0 1.875rem 0;
 }
 
@@ -141,7 +141,7 @@ input:focus, textarea:focus{
     cursor: pointer;
 }
 
-.btn-add, .btn-delete{
+.btn-add, .btn-delete, .btn-add-list{
     border: none;
     padding: 1.25rem;
     border-radius: 0.375rem;
