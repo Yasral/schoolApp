@@ -160,10 +160,10 @@ let displayCards = (content) => {
                     let identifiantCarte = data[0].id;
                     if(identifiantCarte == cardId){
                         console.log("Yes");
-                        const listeNom = document.querySelector(".liste-nom");
-                        const listePrenom = document.querySelector(".liste-prenom");
-                        const listeBio = document.querySelector(".liste-description");
-                        const listeNiveau = document.querySelector(".liste-level");
+                        const listeNom = cardToUpdate.querySelector(".liste-nom");
+                        const listePrenom = cardToUpdate.querySelector(".liste-prenom");
+                        const listeBio = cardToUpdate.querySelector(".liste-description");
+                        const listeNiveau = cardToUpdate.querySelector(".liste-level");
 
                         listeNom.innerHTML = data[0].Nom;
                         listePrenom.innerHTML = data[0].Prenom;
