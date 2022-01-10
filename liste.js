@@ -178,6 +178,10 @@ let displayCards = (content) => {
                             hiddenDetail.classList.remove("hide-content");
                             let listClose = document.querySelector(".list-close");
 
+                            nom.innerHTML = data[0].Nom;
+                            prenom.innerHTML = data[0].Prenom;
+                            detailDescription.innerHTML = data[0].Biographie;
+                            detailLevel.innerHTML = data[0].Niveau;
                             maquette.innerHTML = data[0].Maquette;
                             maquette.value = data[0].Maquette;
                             detailDatabase.innerHTML = data[0].BaseDonnee;
@@ -200,24 +204,6 @@ let displayCards = (content) => {
                                 cardGroupList.classList.remove("hide-content");
                             })
                         }, true)
-
-                        // maquette.innerHTML = data[0].Maquette;
-                        // maquette.value = data[0].Maquette;
-                        // detailDatabase.innerHTML = data[0].BaseDonnee;
-                        // detailDatabase.value = data[0].BaseDonnee;
-                        // detailUi.innerHTML = data[0].InterfaceUtilisateur;
-                        // detailUi.value = data[0].InterfaceUtilisateur;
-                        // detailComposant.innerHTML = data[0].Composant;
-                        // detailComposant.value = data[0].Composant;
-                        // detailCms.innerHTML = data[0].Cms;
-                        // detailCms.value = data[0].Cms;
-                        // detailInterface.innerHTML = data[0].InterfaceStatique;
-                        // detailInterface.value = data[0].InterfaceStatique;
-                        // detailGestion.innerHTML = data[0].GestionContenu;
-                        // detailGestion.value = data[0].GestionContenu;
-                        // detailBack.innerHTML = data[0].BackEnd;
-                        // detailBack.value = data[0].BackEnd;
-
                     }
                 })
             })
